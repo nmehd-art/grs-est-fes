@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GRS Website - EST Fès</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        darkBg: '#090d16',
+                        cardBg: '#111827',
+                        accentGreen: '#10b981',
+                        accentBlue: '#3b82f6',
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .page-content { 
+            display: none; 
+            opacity: 0;
+            transition: opacity 0.4s ease-in-out;
+        }
+        .page-content.active { 
+            display: block; 
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="bg-darkBg text-gray-100 min-h-screen font-sans selection:bg-accentGreen selection:text-black transition-colors duration-300">
+
+    <!-- Navbar -->
+    <nav class="border-b border-gray-800 bg-darkBg/90 backdrop-blur-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex items-center space-x-3 space-x-reverse cursor-pointer" onclick="showPage('home')">
+                    <div class="bg-gradient-to-tr from-accentGreen to-accentBlue p-2 rounded-xl text-black font-black text-xl shadow-lg shadow-accentGreen/20">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <div>
+                        <span class="text-xl font-extrabold tracking-wider bg-gradient-to-r from-accentGreen to-accentBlue bg-clip-text text-transparent">GRS Website</span>
+                        <span class="block text-xs text-gray-400 font-medium">EST Fès • Réseaux & Sécurité</span>
+                    </div>
+                </div>
+                <div class="hidden md:flex items-center space-x-6 space-x-reverse text-sm font-medium">
+                    <button onclick="showPage('home')" data-i18n="navHome" class="hover:text-accentGreen transition">الرئيسية</button>
+                    <button onclick="showPage('emploi')" data-i18n="navEmploi" class="hover:text-accentGreen transition">جدول الحصص والمجموعات</button>
+                    <button onclick="showPage('resources')" data-i18n="navRes" class="hover:text-accentGreen transition">طريقة تحميل لينكس</button>
+                    <button onclick="showPage('contact')" data-i18n="navContact" class="hover:text-accentGreen transition">اتصل بي / استفسار</button>
+                    <button onclick="showPage('about')" data-i18n="navAbout" class="hover:text-accentGreen transition">عن المنصة</button>
+                </div>
+                <!-- Language Switcher -->
+                <div class="flex items-center space-x-2 space-x-reverse bg-gray-900 border border-gray-800 p-1 rounded-xl">
+                    <button onclick="setLanguage('ar')" id="lang-ar" class="px-2.5 py-1 text-xs font-bold rounded-lg bg-accentGreen text-black transition">AR</button>
+                    <button onclick="setLanguage('fr')" id="lang-fr" class="px-2.5 py-1 text-xs font-bold rounded-lg text-gray-400 hover:text-white transition">FR</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ================= PAGE: HOME ================= -->
+    <div id="page-home" class="page-content active">
+        <!-- Hero Section -->
+        <header class="relative py-24 px-4 text-center overflow-hidden border-b border-gray-800/60 bg-gradient-to-b from-cardBg/40 to-darkBg mb-12">
+            <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#10b981_1px,transparent_1px)] [background-size:16px_16px]"></div>
+            <div class="max-w-3xl mx-auto relative z-10">
+                <span data-i18n="heroBadge" class="inline-block px-4 py-1.5 mb-6 text-xs font-semibold tracking-wide text-accentGreen bg-accentGreen/10 border border-accentGreen/20 rounded-full">
+                    ⚡ Secure Your Knowledge, Master Your Network
+                </span>
+                <h1 class="text-4xl sm:text-6xl font-black tracking-tight mb-6 leading-tight">
+                    <span data-i18n="heroTitlePre">منصة طلبة</span> <span class="text-accentGreen">GRS - EST Fès</span>
+                </h1>
+                <p data-i18n="heroDesc" class="text-gray-400 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
+                    بوابتك التقنية الموحدة لتنظيم الدروس، المراجع، ومشاركة الملفات الخاصة بتخصص تدبير الشبكات والأمن السيبراني.
+                </p>
+            </div>
+        </header>
+
+        <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-20">
+            <!-- Modules Section -->
+            <section class="my-12">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-10 gap-4">
+                    <h2 class="text-2xl font-bold flex items-center gap-3">
+                        <i class="fa-solid fa-folder-open text-accentGreen"></i> <span data-i18n="modulesHeading">المواد الدراسية</span>
+                    </h2>
+                    <span data-i18n="modulesSub" class="text-xs text-gray-400 bg-gray-800/80 px-3.5 py-1.5 rounded-lg border border-gray-700/50">اختر المادة للانتقال لصفحتها الخاصة</span>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Module 1: Maths Appliqué -->
+                    <div onclick="openModulePage('MATHS APPLIQUE')" class="group cursor-pointer bg-gradient-to-br from-gray-900 to-cardBg border border-gray-800 hover:border-accentGreen/50 rounded-2xl p-8 transition-all duration-300 hover:shadow-2xl hover:shadow-accentGreen/10 relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-accentBlue/5 rounded-full blur-2xl group-hover:bg-accentGreen/10 transition-all"></div>
+                        <div class="w-14 h-14 rounded-xl bg-accentBlue/10 text-accentBlue flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-square-root-variable"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 group-hover:text-accentGreen transition-colors">MATHS APPLIQUE</h3>
+                        <p data-i18n="mod1Desc" class="text-gray-400 text-sm mb-6 leading-relaxed">الرياضيات التطبيقية، الجبر، والتحليل الموجه للتقنيات والشبكات.</p>
+                        <div class="flex items-center text-xs font-semibold text-accentBlue group-hover:translate-x-1 transition-transform">
+                            <span data-i18n="openMod">فتح صفحة المادة</span>
+                            <i class="fa-solid fa-arrow-left mx-2"></i>
+                        </div>
+                    </div>
+
+                    <!-- Module 2: Système d'Exploitation -->
+                    <div onclick="openModulePage('SYSTEME D\'EXPLOITATION')" class="group cursor-pointer bg-gradient-to-br from-gray-900 to-cardBg border border-gray-800 hover:border-accentGreen/50 rounded-2xl p-8 transition-all duration-300 hover:shadow-2xl hover:shadow-accentGreen/10 relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-purple-500/5 rounded-full blur-2xl group-hover:bg-accentGreen/10 transition-all"></div>
+                        <div class="w-14 h-14 rounded-xl bg-purple-500/10 text-purple-400 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-terminal"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 group-hover:text-accentGreen transition-colors">SYSTEME D'EXPLOITATION</h3>
+                        <p data-i18n="mod3Desc" class="text-gray-400 text-sm mb-6 leading-relaxed">أنظمة التشغيل، سطر الأوامر Linux، إدارة الصلاحيات والعمليات.</p>
+                        <div class="flex items-center text-xs font-semibold text-purple-400 group-hover:translate-x-1 transition-transform">
+                            <span data-i18n="openMod">فتح صفحة المادة</span>
+                            <i class="fa-solid fa-arrow-left mx-2"></i>
+                        </div>
+                    </div>
+
+                    <!-- Module 3: Système Numérique -->
+                    <div onclick="openModulePage('SYSTEME NUMERIQUE')" class="group cursor-pointer bg-gradient-to-br from-gray-900 to-cardBg border border-gray-800 hover:border-accentGreen/50 rounded-2xl p-8 transition-all duration-300 hover:shadow-2xl hover:shadow-accentGreen/10 relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-accentGreen/5 rounded-full blur-2xl group-hover:bg-accentGreen/10 transition-all"></div>
+                        <div class="w-14 h-14 rounded-xl bg-accentGreen/10 text-accentGreen flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-microchip"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 group-hover:text-accentGreen transition-colors">SYSTEME NUMERIQUE</h3>
+                        <p data-i18n="mod2Desc" class="text-gray-400 text-sm mb-6 leading-relaxed">مقدمة في الأنظمة الرقمية، البوابات، وبنية العتاد والحواسب.</p>
+                        <div class="flex items-center text-xs font-semibold text-accentGreen group-hover:translate-x-1 transition-transform">
+                            <span data-i18n="openMod">فتح صفحة المادة</span>
+                            <i class="fa-solid fa-arrow-left mx-2"></i>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- ================= PAGE: MODULE DETAIL ================= -->
+    <div id="page-module" class="page-content">
+        <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-8">
+            <button onclick="showPage('home')" class="mb-4 inline-flex items-center text-sm font-semibold text-gray-400 hover:text-accentGreen transition">
+                <i class="fa-solid fa-arrow-right mx-2"></i> <span data-i18n="backHome">العودة للرئيسية</span>
+            </button>
+            
+            <div class="bg-cardBg border border-gray-800 rounded-3xl p-8 sm:p-12 shadow-2xl">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-10 pb-6 border-b border-gray-800 gap-6">
+                    <div>
+                        <span data-i18n="modSubtitle" class="text-xs text-accentGreen font-semibold uppercase tracking-wider">صفحة المادة الدراسية</span>
+                        <h2 id="detModuleTitle" class="text-3xl font-black mt-2 text-white">اسم المادة</h2>
+                    </div>
+                    <div class="flex space-x-2 space-x-reverse bg-gray-900/80 p-1.5 border border-gray-800 rounded-2xl">
+                        <button onclick="switchTab('pdfs')" id="tabBtn-pdfs" data-i18n="tabPdf" class="px-5 py-2.5 text-sm font-semibold rounded-xl bg-accentGreen text-black transition">الـ PDFات والدروس</button>
+                        <button onclick="switchTab('videos')" id="tabBtn-videos" data-i18n="tabVid" class="px-5 py-2.5 text-sm font-semibold rounded-xl bg-gray-800 text-gray-300 hover:bg-gray-700 transition">فيديوهات يوتيوب</button>
+                    </div>
+                </div>
+
+                <!-- Tab PDFs Content -->
+                <div id="detTab-pdfs" class="space-y-6">
+                    <h3 class="text-lg font-bold mb-4 flex items-center gap-2.5"><i class="fa-solid fa-file-pdf text-red-500"></i> <span data-i18n="pdfSec">ملفات الـ PDF المتاحة</span></h3>
+                    <div id="pdf-list-container" class="space-y-4"></div>
+                </div>
+
+                <!-- Tab Videos Content -->
+                <div id="detTab-videos" class="space-y-6" style="display: none;">
+                    <h3 class="text-lg font-bold mb-4 flex items-center gap-2.5"><i class="fa-brands fa-youtube text-red-500"></i> <span data-i18n="vidSec">الشروحات المرئية</span></h3>
+                    <div id="vid-list-container" class="space-y-4"></div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- ================= PAGE: EMPLOI DU TEMPS & GROUPES ================= -->
+    <div id="page-emploi" class="page-content">
+        <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-10">
+            <button onclick="showPage('home')" class="inline-flex items-center text-sm font-semibold text-gray-400 hover:text-accentGreen transition">
+                <i class="fa-solid fa-arrow-right mx-2"></i> <span data-i18n="backHome">العودة للرئيسية</span>
+            </button>
+
+            <div class="bg-cardBg border border-gray-800 rounded-3xl p-8 sm:p-12 shadow-2xl space-y-8">
+                <div>
+                    <h2 class="text-3xl font-black mb-3 flex items-center gap-3">
+                        <i class="fa-solid fa-calendar-days text-accentBlue"></i> <span data-i18n="emploiHeading">جدول الحصص وتوزيع المجموعات (Emploi du Temps & Groupes)</span>
+                    </h2>
+                    <p data-i18n="emploiDesc" class="text-gray-400 text-sm">التوقيت الدراسي الرسمي الخاص بالقسم، وتوزيع المجموعات (Groupe 1, 2, 3, 4). اضغط على أي صورة لتكبيرها.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Emploi du Temps Image -->
+                    <div class="p-6 bg-gray-900/80 border border-gray-800 rounded-2xl text-center space-y-3 shadow-lg">
+                        <div class="text-accentGreen font-bold text-sm">📅 A.U 2026/2027 - Semestre S1 (Salle : C01)</div>
+                        <div class="p-2 bg-gray-800/50 rounded-xl border border-gray-700 overflow-hidden cursor-pointer group" onclick="openLightbox('https://lh3.googleusercontent.com/d/1YKF_YsEuELHUUG3E8T8B-QyBLI36XN-s', 'Emploi du Temps Officiel S1')">
+                            <img src="https://lh3.googleusercontent.com/d/1YKF_YsEuELHUUG3E8T8B-QyBLI36XN-s" alt="Emploi du Temps S1" class="w-full rounded-lg shadow-md group-hover:scale-105 transition-transform duration-300">
+                        </div>
+                        <span data-i18n="zoomEmploi" class="text-xs text-gray-400 font-medium block">اضغط لتكبير الجدول 🔍</span>
+                    </div>
+
+                    <!-- Groupes & Listes Image -->
+                    <div class="p-6 bg-gray-900/80 border border-gray-800 rounded-2xl text-center space-y-3 shadow-lg">
+                        <div class="text-accentBlue font-bold text-sm">👥 قائمة المجموعات (Groupes 1, 2, 3, 4)</div>
+                        <div class="p-2 bg-gray-800/50 rounded-xl border border-gray-700 overflow-hidden cursor-pointer group" onclick="openLightbox('https://lh3.googleusercontent.com/d/15AA-l5oCr8VmEThLBvuGxI46mJEb96aQ', 'Rapport de Séance & Listes des Groupes')">
+                            <img src="https://lh3.googleusercontent.com/d/15AA-l5oCr8VmEThLBvuGxI46mJEb96aQ" alt="Rapport de Séance & Groupes" class="w-full rounded-lg shadow-md group-hover:scale-105 transition-transform duration-300">
+                        </div>
+                        <span data-i18n="zoomGroupes" class="text-xs text-gray-400 font-medium block">اضغط لتكبير القائمة 🔍</span>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- ================= PAGE: RESOURCES & LINUX VIDEO GUIDE ================= -->
+    <div id="page-resources" class="page-content">
+        <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-10">
+            <button onclick="showPage('home')" class="inline-flex items-center text-sm font-semibold text-gray-400 hover:text-accentGreen transition">
+                <i class="fa-solid fa-arrow-right mx-2"></i> <span data-i18n="backHome">العودة للرئيسية</span>
+            </button>
+
+            <div class="bg-cardBg border border-gray-800 rounded-3xl p-8 sm:p-12 shadow-2xl space-y-8">
+                <h2 class="text-3xl font-black flex items-center gap-3">
+                    <i class="fa-solid fa-video text-accentGreen"></i> <span data-i18n="resHeading">طريقة تحميل وتثبيت لينكس (فيديو الشرح والروابط)</span>
+                </h2>
+                <p data-i18n="resDesc" class="text-gray-400 text-sm leading-relaxed">
+                    فيديو توضيحي يشرح خطوة بخطوة كيفية تثبيت نظام التشغيل الأمني على حاسوبك الوهمي (VirtualBox) للبدء في التطبيق العملي للشبكات والأمن السيبراني:
+                </p>
+
+                <!-- فيديو الشرح بخلفية نظيفة وبدون Error -->
+                <div class="p-6 bg-gradient-to-br from-gray-950 to-gray-900 border border-gray-800 rounded-2xl shadow-2xl text-center space-y-6">
+                    <div class="w-16 h-16 mx-auto rounded-2xl bg-red-500/10 text-red-500 flex items-center justify-center text-3xl shadow-inner animate-pulse">
+                        <i class="fa-brands fa-youtube"></i>
+                    </div>
+                    <div>
+                        <h3 data-i18n="vidTitle" class="text-lg font-bold text-white mb-2">دليل تثبيت نظام لينكس و VirtualBox (خطوة بخطوة)</h3>
+                        <p data-i18n="vidSub" class="text-xs text-gray-400 max-w-lg mx-auto leading-relaxed">
+                            انقر على الزر أدناه لمشاهدة الشرح التفصيلي مباشرة على يوتيوب والتطبيق معك خطوة بخطوة.
+                        </p>
+                    </div>
+                    <div>
+                        <a href="https://www.youtube.com/watch?v=OlGSWbz-wfA&list=LL&index=2&t=156s" target="_blank" class="inline-flex items-center px-8 py-3 bg-red-600 hover:bg-red-700 text-white text-sm font-bold rounded-xl transition shadow-lg shadow-red-600/30 gap-3">
+                            <span data-i18n="watchYtBtn">مشاهدة الشرح الكامل على يوتيوب</span> <i class="fa-solid fa-arrow-left"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- روابط تحميل أدوات وأنظمة التشغيل الرسمية -->
+                <div class="p-6 bg-gray-950 border border-gray-800 rounded-2xl space-y-4">
+                    <h3 data-i18n="toolsHeading" class="text-base font-bold text-white flex items-center gap-2">
+                        <i class="fa-solid fa-download text-accentGreen"></i> روابط تحميل أدوات وأنظمة التشغيل الرسمية:
+                    </h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
+                        <a href="https://www.kali.org/" target="_blank" class="p-4 bg-gray-900 border border-gray-800 hover:border-accentGreen/50 rounded-xl flex items-center justify-between transition group">
+                            <div class="flex items-center space-x-3 space-x-reverse">
+                                <i class="fa-solid fa-shield-cat text-accentGreen text-lg"></i>
+                                <span class="font-semibold text-white">Kali Linux Official</span>
+                            </div>
+                            <i class="fa-solid fa-external-link-alt text-xs text-gray-500 group-hover:text-accentGreen"></i>
+                        </a>
+                        <a href="https://www.virtualbox.org/" target="_blank" class="p-4 bg-gray-900 border border-gray-800 hover:border-accentBlue/50 rounded-xl flex items-center justify-between transition group">
+                            <div class="flex items-center space-x-3 space-x-reverse">
+                                <i class="fa-solid fa-laptop-code text-accentBlue text-lg"></i>
+                                <span class="font-semibold text-white">Oracle VirtualBox</span>
+                            </div>
+                            <i class="fa-solid fa-external-link-alt text-xs text-gray-500 group-hover:text-accentBlue"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="p-5 bg-gray-900/50 border border-gray-800 rounded-2xl">
+                    <h4 data-i18n="tipTitle" class="font-semibold text-sm text-accentGreen mb-1"><i class="fa-solid fa-circle-info mx-1"></i> نصيحة تقنية:</h4>
+                    <p data-i18n="tipDesc" class="text-xs text-gray-300 leading-relaxed">
+                        تأكد من إعطاء مساحة كافية للذاكرة العشوائية (RAM) ووحدة المعالجة المركزية (CPU) داخل إعدادات VirtualBox لضمان سلاسة تشغيل التوزيعة الأمنية.
+                    </p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- ================= PAGE: CONTACT ================= -->
+    <div id="page-contact" class="page-content">
+        <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-10">
+            <button onclick="showPage('home')" class="inline-flex items-center text-sm font-semibold text-gray-400 hover:text-accentGreen transition">
+                <i class="fa-solid fa-arrow-right mx-2"></i> <span data-i18n="backHome">العودة للرئيسية</span>
+            </button>
+
+            <div class="bg-cardBg border border-gray-800 rounded-3xl p-8 sm:p-12 shadow-2xl space-y-8">
+                <div>
+                    <h2 class="text-3xl font-black mb-3 flex items-center gap-3">
+                        <i class="fa-solid fa-headset text-accentGreen"></i> <span data-i18n="contactHeading">اتصل بي أو استفسار</span>
+                    </h2>
+                    <p data-i18n="contactDesc" class="text-gray-400 text-sm">لديك سؤال، ملاحظة، أو استفسار بخصوص الدروس والمحتوى؟ تواصل معي مباشرة عبر الوسائل أدناه.</p>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div class="p-6 bg-gray-900/60 border border-gray-800 rounded-2xl flex items-center space-x-4 space-x-reverse">
+                        <div class="w-14 h-14 bg-accentGreen/10 text-accentGreen rounded-2xl flex items-center justify-center text-2xl">
+                            <i class="fa-solid fa-user-shield"></i>
+                        </div>
+                        <div>
+                            <span data-i18n="contactLabel" class="text-xs text-gray-400">المسؤول عن المنصة</span>
+                            <h4 class="font-bold text-base text-white mt-0.5">Mohamed Nahed</h4>
+                            <span class="text-xs text-accentGreen font-medium">EST Fès • GRS</span>
+                        </div>
+                    </div>
+
+                    <!-- TikTok Contact Box -->
+                    <a href="https://www.tiktok.com/@_n4ahed_" target="_blank" class="p-6 bg-gray-900/60 border border-gray-800 hover:border-accentGreen/50 rounded-2xl flex items-center space-x-4 space-x-reverse transition group">
+                        <div class="w-14 h-14 bg-pink-500/10 text-pink-400 rounded-2xl flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
+                            <i class="fa-brands fa-tiktok"></i>
+                        </div>
+                        <div>
+                            <span data-i18n="contactTikTok" class="text-xs text-gray-400">تواصل ومتابعة عبر تيك توك</span>
+                            <div class="flex items-center space-x-2 space-x-reverse mt-0.5">
+                                <i class="fa-brands fa-tiktok text-pink-400 text-xs"></i>
+                                <h4 class="font-bold text-sm text-pink-400">@_n4ahed_</h4>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- ================= PAGE: ABOUT ================= -->
+    <div id="page-about" class="page-content">
+        <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-10">
+            <button onclick="showPage('home')" class="inline-flex items-center text-sm font-semibold text-gray-400 hover:text-accentGreen transition">
+                <i class="fa-solid fa-arrow-right mx-2"></i> <span data-i18n="backHome">العودة للرئيسية</span>
+            </button>
+
+            <div class="bg-gradient-to-r from-cardBg to-gray-900 border border-gray-800 rounded-3xl p-8 sm:p-12 shadow-2xl space-y-6">
+                <h2 class="text-3xl font-black flex items-center gap-3">
+                    <i class="fa-solid fa-circle-info text-purple-400"></i> <span data-i18n="aboutHeading">عن المنصة</span>
+                </h2>
+                <p data-i18n="aboutText" class="text-gray-300 text-base leading-relaxed">
+                    منصة تعاونية طلابية خاصة بطلبة تخصص <strong>Gestion des Réseaux et Sécurité (GRS)</strong> في المدرسة العليا للكنولوجيا بفاس (<strong>EST Fès</strong>). صُممت لتسهيل الوصول للمصادر، تنظيم الدروس، وتبادل الملاحظات بين الطلبة.
+                </p>
+                <div class="inline-block px-6 py-3.5 bg-gray-800/80 border border-gray-700/60 rounded-2xl text-sm font-semibold text-accentGreen shadow-md">
+                    <span data-i18n="devBy">تم التطوير والتنظيم بواسطة:</span> <span class="text-white font-bold text-base">Mohamed Nahed</span>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Lightbox Modal for Zooming Images -->
+    <div id="lightbox-modal" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md hidden items-center justify-center p-4">
+        <div class="relative max-w-5xl w-full max-h-[90vh] flex flex-col items-center">
+            <button onclick="closeLightbox()" class="absolute -top-12 left-0 text-white bg-gray-800 hover:bg-red-600 w-10 h-10 rounded-full flex items-center justify-center text-lg transition shadow-lg">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <h3 id="lightbox-title" class="text-white font-bold text-base mb-3"></h3>
+            <div class="overflow-auto max-h-[80vh] w-full rounded-2xl border border-gray-700 bg-gray-900 p-2 text-center">
+                <img id="lightbox-img" src="" alt="Zoomed Image" class="max-w-full h-auto mx-auto rounded-lg shadow-2xl">
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="border-t border-gray-800 mt-28 py-10 text-center text-xs text-gray-500">
+        <p data-i18n="footer">GRS Website • EST Fès © 2026 • صُمم بحرفية لطلبة الشبكات والأمن السيبراني</p>
+    </footer>
+
+    <!-- Script logic -->
+    <script>
+        const moduleData = {
+            'MATHS APPLIQUE': {
+                title: 'MATHS APPLIQUE',
+                pdfs: [
+                    { name: 'Chapitre 1 - Les Nombres Complexes', url: 'https://drive.google.com/file/d/1uaP8nW1SmGKbmZ-VE1iYz2_C8uGIX32t/view?usp=drive_link' },
+                    { name: 'Chapitre 2 - Calcul Matriciel', url: 'https://drive.google.com/file/d/1fELnWRMr7k97oFCZ4vIodT3e5WnSFIqW/view?usp=drive_link' }
+                ],
+                videos: [
+                    { name: 'Chapitre 1 - Les Nombres Complexes (Playlist YouTube)', url: 'https://www.youtube.com/watch?v=0wl0K6h5HW8&list=PL7LFj7qceOG-wdp0CTqcKetUdlziWde4k' },
+                    { name: 'Chapitre 2 - Calcul Matriciel (Playlist YouTube)', url: 'https://www.youtube.com/watch?v=_MlJumOKNuM&list=PLACAjAPLo-ge6wDFMFOHz9JR_gvyHXdi5' }
+                ]
+            },
+            'SYSTEME D\'EXPLOITATION': {
+                title: 'SYSTEME D\'EXPLOITATION',
+                pdfs: [
+                    { name: 'Système d\'Exploitation - Support 1', url: 'https://drive.google.com/file/d/1XHwPaMJ3R4KqyKfsDCg8PpOSYKgEr6qz/view?usp=drive_link' },
+                    { name: 'Système d\'Exploitation - Support 2', url: 'https://drive.google.com/file/d/1NFsrx6G6Kj2hFlhV_JTAqqjFvlTIAJ8F/view?usp=drive_link' },
+                    { name: 'Système d\'Exploitation - Support 3', url: 'https://drive.google.com/file/d/1wtKFMq_pVtWjUdqxYfwIKBlMWiejAzpS/view?usp=drive_link' },
+                    { name: 'Système d\'Exploitation - Support 4', url: 'https://drive.google.com/file/d/1qd7K1Ztnnc_DkMVHs83mgik4rs29fTdW/view?usp=drive_link' },
+                    { name: 'Système d\'Exploitation - Support 5', url: 'https://drive.google.com/file/d/155z62T83b0zQon8_B61qUdQzxgfu-hrb/view?usp=drive_link' }
+                ],
+                videos: [
+                    { name: 'Système d\'Exploitation - Playlist YouTube', url: 'https://www.youtube.com/watch?v=0MhJEhEhV7w&list=PLWM-CI-kvwLd-Qvc-r_zQhGUtpiK2GKrQ' }
+                ]
+            },
+            'SYSTEME NUMERIQUE': {
+                title: 'SYSTEME NUMERIQUE',
+                pdfs: [
+                    { name: 'Système Numérique - Support de Cours', url: 'https://drive.google.com/file/d/1C9aUmJK81pjDLo6B8PId2vy5blLzGYMs/view?usp=drive_link' }
+                ],
+                videos: [
+                    { name: 'Système Numérique - Playlist YouTube 1', url: 'https://youtube.com/playlist?list=PLU7IbxWzSiXQotZw50OdTTtMOjG5F-Fxh&si=aTV99ZsrwCWLI-5N' },
+                    { name: 'Système Numérique - Playlist YouTube 2', url: 'https://youtube.com/playlist?list=PL7LFj7qceOG9rFUzxYqta6xQvnY4GKRjM&si=iqRjnAEPQcipz0_9' }
+                ]
+            }
+        };
+
+        const translations = {
+            ar: {
+                navHome: "الرئيسية",
+                navEmploi: "جدول الحصص والمجموعات",
+                navRes: "طريقة تحميل لينكس",
+                navContact: "اتصل بي / استفسار",
+                navAbout: "عن المنصة",
+                heroBadge: "⚡ Secure Your Knowledge, Master Your Network",
+                heroTitlePre: "منصة طلبة",
+                heroDesc: "بوابتك التقنية الموحدة لتنظيم الدروس، المراجع، ومشاركة الملفات الخاصة بتخصص تدبير الشبكات والأمن السيبراني.",
+                modulesHeading: "المواد الدراسية",
+                modulesSub: "اختر المادة للانتقال لصفحتها الخاصة",
+                openMod: "فتح صفحة المادة",
+                mod1Desc: "الرياضيات التطبيقية، الجبر، والتحليل الموجه للتقنيات والشبكات.",
+                mod2Desc: "مقدمة في الأنظمة الرقمية، البوابات، وبنية العتاد والحواسب.",
+                mod3Desc: "أنظمة التشغيل، سطر الأوامر Linux، إدارة الصلاحيات والعمليات.",
+                backHome: "العودة للرئيسية",
+                modSubtitle: "صفحة المادة الدراسية",
+                tabPdf: "الـ PDFات والدروس",
+                tabVid: "فيديوهات يوتيوب",
+                pdfSec: "ملفات الـ PDF المتاحة",
+                vidSec: "الشروحات المرئية",
+                emploiHeading: "جدول الحصص وتوزيع المجموعات (Emploi du Temps & Groupes)",
+                emploiDesc: "التوقيت الدراسي الرسمي الخاص بالقسم، وتوزيع المجموعات (Groupe 1, 2, 3, 4). اضغط على أي صورة لتكبيرها.",
+                zoomEmploi: "اضغط لتكبير الجدول 🔍",
+                zoomGroupes: "اضغط لتكبير القائمة 🔍",
+                resHeading: "طريقة تحميل وتثبيت لينكس (فيديو الشرح والروابط)",
+                resDesc: "فيديو توضيحي يشرح خطوة بخطوة كيفية تثبيت نظام التشغيل الأمني على حاسوبك الوهمي (VirtualBox) للبدء في التطبيق العملي للشبكات والأمن السيبراني:",
+                vidTitle: "دليل تثبيت نظام لينكس و VirtualBox (خطوة بخطوة)",
+                vidSub: "انقر على الزر أدناه لمشاهدة الشرح التفصيلي مباشرة على يوتيوب والتطبيق معك خطوة بخطوة.",
+                watchYtBtn: "مشاهدة الشرح الكامل على يوتيوب",
+                toolsHeading: "روابط تحميل أدوات وأنظمة التشغيل الرسمية:",
+                tipTitle: "نصيحة تقنية:",
+                tipDesc: "تأكد من إعطاء مساحة كافية للذاكرة العشوائية (RAM) ووحدة المعالجة المركزية (CPU) داخل إعدادات VirtualBox لضمان سلاسة تشغيل التوزيعة الأمنية.",
+                contactHeading: "اتصل بي أو استفسار",
+                contactDesc: "لديك سؤال، ملاحظة، أو استفسار بخصوص الدروس والمحتوى؟ تواصل معي مباشرة عبر الوسائل أدناه.",
+                contactLabel: "المسؤول عن المنصة",
+                contactTikTok: "تواصل ومتابعة عبر تيك توك",
+                aboutHeading: "عن المنصة",
+                aboutText: "منصة تعاونية طلابية خاصة بطلبة تخصص <strong>Gestion des Réseaux et Sécurité (GRS)</strong> في المدرسة العليا للكنولوجيا بفاس (<strong>EST Fès</strong>). صُممت لتسهيل الوصول للمصادر، تنظيم الدروس، وتبادل الملاحظات بين الطلبة.",
+                devBy: "تم التطوير والتنظيم بواسطة:",
+                footer: "GRS Website • EST Fès © 2026 • صُمم بحرفية لطلبة الشبكات والأمن السيبراني"
+            },
+            fr: {
+                navHome: "Accueil",
+                navEmploi: "Emploi du Temps & Groupes",
+                navRes: "Guide Linux",
+                navContact: "Contact / Support",
+                navAbout: "À propos",
+                heroBadge: "⚡ Secure Your Knowledge, Master Your Network",
+                heroTitlePre: "Portail des Étudiants",
+                heroDesc: "Votre passerelle technique unifiée pour organiser les cours, les références et partager les fichiers de la filière Réseaux et Sécurité.",
+                modulesHeading: "Modules d'Études",
+                modulesSub: "Sélectionnez un module pour accéder à sa page",
+                openMod: "Ouvrir la page",
+                mod1Desc: "Mathématiques appliquées, algèbre et analyse orientées technologies et réseaux.",
+                mod2Desc: "Introduction aux systèmes numériques, portes logiques et architecture des ordinateurs.",
+                mod3Desc: "Systèmes d'exploitation, ligne de commande Linux, gestion des permissions et processus.",
+                backHome: "Retour à l'accueil",
+                modSubtitle: "Page du Module d'Étude",
+                tabPdf: "Fichiers PDF & Cours",
+                tabVid: "Vidéos YouTube",
+                pdfSec: "Fichiers PDF Disponibles",
+                vidSec: "Explications Vidéo",
+                emploiHeading: "Emploi du Temps & Répartition des Groupes",
+                emploiDesc: "L'horaire officiel de la classe et la répartition des groupes (1, 2, 3, 4). Cliquez sur une image pour l'agrandir.",
+                zoomEmploi: "Cliquez pour agrandir l'emploi du temps 🔍",
+                zoomGroupes: "Cliquez pour agrandir la liste 🔍",
+                resHeading: "Méthode d'installation Linux (Vidéo & Liens)",
+                resDesc: "Vidéo explicative étape par étape sur l'installation du système d'exploitation sécurisé sur une machine virtuelle (VirtualBox) pour les TP de réseaux et cybersécurité :",
+                vidTitle: "Guide d'installation Linux & VirtualBox (Étape par étape)",
+                vidSub: "Cliquez sur le bouton ci-dessous pour regarder l'explication détaillée directement sur YouTube.",
+                watchYtBtn: "Regarder l'explication complète sur YouTube",
+                toolsHeading: "Liens de téléchargement officiels des outils et systèmes :",
+                tipTitle: "Conseil technique :",
+                tipDesc: "Assurez-vous d'allouer suffisamment de mémoire RAM et de processeur (CPU) dans les paramètres de VirtualBox pour assurer le bon fonctionnement de la distribution.",
+                contactHeading: "Contactez-moi ou Posez une Question",
+                contactDesc: "Vous avez une question, une remarque ou un besoin d'information concernant les cours ? Contactez-moi directement.",
+                contactLabel: "Responsable de la Plateforme",
+                contactTikTok: "Contact et suivi sur TikTok",
+                aboutHeading: "À propos de la Plateforme",
+                aboutText: "Plateforme collaborative étudiante dédiée aux étudiants de la filière <strong>Gestion des Réseaux et Sécurité (GRS)</strong> à l'École Supérieure de Technologie de Fès (<strong>EST Fès</strong>).",
+                devBy: "Développé et organisé par :",
+                footer: "GRS Website • EST Fès © 2026 • Conçu avec soin pour les étudiants en Réseaux et Sécurité"
+            }
+        };
+
+        document.addEventListener("DOMContentLoaded", function() {
+            showPage('home');
+        });
+
+        function showPage(pageId) {
+            document.querySelectorAll('.page-content').forEach(page => {
+                page.classList.remove('active');
+                page.style.display = 'none';
+            });
+            const targetPage = document.getElementById('page-' + pageId);
+            if(targetPage) {
+                targetPage.style.display = 'block';
+                setTimeout(() => {
+                    targetPage.classList.add('active');
+                }, 10);
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        // Lightbox Functions for Zooming Images
+        function openLightbox(imgSrc, title) {
+            const modal = document.getElementById('lightbox-modal');
+            const img = document.getElementById('lightbox-img');
+            const titleEl = document.getElementById('lightbox-title');
+            
+            img.src = imgSrc;
+            titleEl.innerText = title;
+            modal.style.display = 'flex';
+        }
+
+        function closeLightbox() {
+            const modal = document.getElementById('lightbox-modal');
+            modal.style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('lightbox-modal');
+            if (event.target === modal) {
+                closeLightbox();
+            }
+        }
+
+        function openModulePage(moduleKey) {
+            const data = moduleData[moduleKey];
+            if(!data) return;
+
+            document.getElementById('detModuleTitle').innerText = data.title;
+            
+            const pdfContainer = document.getElementById('pdf-list-container');
+            pdfContainer.innerHTML = '';
+            data.pdfs.forEach(pdf => {
+                pdfContainer.innerHTML += `
+                    <div class="p-5 bg-gray-900/60 border border-gray-800 rounded-2xl flex items-center justify-between">
+                        <div>
+                            <h4 class="font-semibold text-sm mb-1">${pdf.name}</h4>
+                            <span class="text-xs text-gray-500">جاهز للتحميل / Prêt</span>
+                        </div>
+                        <a href="${pdf.url}" target="_blank" class="px-4 py-2 bg-accentGreen/15 text-accentGreen hover:bg-accentGreen hover:text-black text-xs font-semibold rounded-xl transition">تحميل / Download</a>
+                    </div>
+                `;
+            });
+
+            const vidContainer = document.getElementById('vid-list-container');
+            vidContainer.innerHTML = '';
+            data.videos.forEach(vid => {
+                vidContainer.innerHTML += `
+                    <div class="p-5 bg-gray-900/60 border border-gray-800 rounded-2xl flex items-center justify-between">
+                        <div>
+                            <h4 class="font-semibold text-sm mb-1">${vid.name}</h4>
+                            <span class="text-xs text-gray-500">YouTube</span>
+                        </div>
+                        <a href="${vid.url}" target="_blank" class="px-4 py-2 bg-red-500/15 text-red-400 hover:bg-red-500 hover:text-white text-xs font-semibold rounded-xl transition">مشاهدة / Watch</a>
+                    </div>
+                `;
+            });
+
+            document.querySelectorAll('.page-content').forEach(page => {
+                page.classList.remove('active');
+                page.style.display = 'none';
+            });
+            const modPage = document.getElementById('page-module');
+            modPage.style.display = 'block';
+            setTimeout(() => {
+                modPage.classList.add('active');
+            }, 10);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function switchTab(tab) {
+            if(tab === 'pdfs') {
+                document.getElementById('detTab-pdfs').style.display = 'block';
+                document.getElementById('detTab-videos').style.display = 'none';
+                document.getElementById('tabBtn-pdfs').className = "px-5 py-2.5 text-sm font-semibold rounded-xl bg-accentGreen text-black transition";
+                document.getElementById('tabBtn-videos').className = "px-5 py-2.5 text-sm font-semibold rounded-xl bg-gray-800 text-gray-300 hover:bg-gray-700 transition";
+            } else {
+                document.getElementById('detTab-videos').style.display = 'block';
+                document.getElementById('detTab-pdfs').style.display = 'none';
+                document.getElementById('tabBtn-videos').className = "px-5 py-2.5 text-sm font-semibold rounded-xl bg-accentGreen text-black transition";
+                document.getElementById('tabBtn-pdfs').className = "px-5 py-2.5 text-sm font-semibold rounded-xl bg-gray-800 text-gray-300 hover:bg-gray-700 transition";
+            }
+        }
+
+        function setLanguage(lang) {
+            const t = translations[lang];
+
+            document.documentElement.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+            document.documentElement.setAttribute('lang', lang);
+
+            if(lang === 'ar') {
+                document.getElementById('lang-ar').className = "px-2.5 py-1 text-xs font-bold rounded-lg bg-accentGreen text-black transition";
+                document.getElementById('lang-fr').className = "px-2.5 py-1 text-xs font-bold rounded-lg text-gray-400 hover:text-white transition";
+            } else {
+                document.getElementById('lang-fr').className = "px-2.5 py-1 text-xs font-bold rounded-lg bg-accentGreen text-black transition";
+                document.getElementById('lang-ar').className = "px-2.5 py-1 text-xs font-bold rounded-lg text-gray-400 hover:text-white transition";
+            }
+
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if(t[key]) {
+                    el.innerHTML = t[key];
+                }
+            });
+        }
+    </script>
+</body>
+</html>
