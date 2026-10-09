@@ -227,7 +227,7 @@
         </main>
     </div>
 
-    <!-- ================= PAGE: RESOURCES ================= -->
+    <!-- ================= PAGE: RESOURCES (LINUX GUIDE & TOOLS) ================= -->
     <div id="page-resources" class="page-content">
         <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-10">
             <button onclick="showPage('home')" class="inline-flex items-center text-sm font-semibold text-gray-400 hover:text-accentGreen transition">
@@ -248,6 +248,29 @@
                     <div>
                         <a href="https://www.youtube.com/watch?v=OlGSWbz-wfA&list=LL&index=2&t=156s" target="_blank" class="inline-flex items-center px-8 py-3 bg-red-600 hover:bg-red-700 text-white text-sm font-bold rounded-xl transition shadow-lg gap-3">
                             <span data-i18n="watchYtBtn">مشاهدة الشرح الكامل على يوتيوب</span> <i class="fa-solid fa-arrow-left"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- روابط تحميل أدوات وأنظمة التشغيل الرسمية -->
+                <div class="p-6 bg-gray-950 border border-gray-800 rounded-2xl space-y-4">
+                    <h3 data-i18n="toolsHeading" class="text-base font-bold text-white flex items-center gap-2">
+                        <i class="fa-solid fa-download text-accentGreen"></i> روابط تحميل أدوات وأنظمة التشغيل الرسمية:
+                    </h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
+                        <a href="https://www.kali.org/" target="_blank" class="p-4 bg-gray-900 border border-gray-800 hover:border-accentGreen/50 rounded-xl flex items-center justify-between transition group">
+                            <div class="flex items-center space-x-3 space-x-reverse">
+                                <i class="fa-solid fa-shield-cat text-accentGreen text-lg"></i>
+                                <span class="font-semibold text-white">Kali Linux Official</span>
+                            </div>
+                            <i class="fa-solid fa-external-link-alt text-xs text-gray-500 group-hover:text-accentGreen"></i>
+                        </a>
+                        <a href="https://www.virtualbox.org/" target="_blank" class="p-4 bg-gray-900 border border-gray-800 hover:border-accentBlue/50 rounded-xl flex items-center justify-between transition group">
+                            <div class="flex items-center space-x-3 space-x-reverse">
+                                <i class="fa-solid fa-laptop-code text-accentBlue text-lg"></i>
+                                <span class="font-semibold text-white">Oracle VirtualBox</span>
+                            </div>
+                            <i class="fa-solid fa-external-link-alt text-xs text-gray-500 group-hover:text-accentBlue"></i>
                         </a>
                     </div>
                 </div>
@@ -392,6 +415,7 @@
                 zoomEmploi: "اضغط لتكبير الجدول 🔍",
                 zoomGroupes: "اضغط لتكبير القائمة 🔍",
                 resHeading: "طريقة تحميل وتثبيت لينكس",
+                toolsHeading: "روابط تحميل أدوات وأنظمة التشغيل الرسمية:",
                 vidTitle: "دليل تثبيت نظام لينكس و VirtualBox",
                 watchYtBtn: "مشاهدة الشرح الكامل على يوتيوب",
                 contactHeading: "اتصل بي أو استفسار",
@@ -428,6 +452,7 @@
                 zoomEmploi: "Cliquez pour agrandir l'emploi du temps 🔍",
                 zoomGroupes: "Cliquez pour agrandir la liste 🔍",
                 resHeading: "Méthode d'installation Linux",
+                toolsHeading: "Liens de téléchargement officiels des outils et systèmes :",
                 vidTitle: "Guide d'installation Linux & VirtualBox",
                 watchYtBtn: "Regarder l'explication complète sur YouTube",
                 contactHeading: "Contactez-moi ou Posez une Question",
@@ -499,7 +524,17 @@
 
             const vidContainer = document.getElementById('vid-list-container');
             vidContainer.innerHTML = '';
-            data.videos.forEach(vid => {
+            data.videos.videos?.forEach ? data.videos.forEach(vid => {
+                vidContainer.innerHTML += `
+                    <div class="p-5 bg-gray-900/60 border border-gray-800 rounded-2xl flex items-center justify-between">
+                        <div>
+                            <h4 class="font-semibold text-sm mb-1">${vid.name}</h4>
+                            <span class="text-xs text-gray-500">YouTube</span>
+                        </div>
+                        <a href="${vid.url}" target="_blank" class="px-4 py-2 bg-red-500/15 text-red-400 hover:bg-red-500 hover:text-white text-xs font-semibold rounded-xl transition">مشاهدة / Watch</a>
+                    </div>
+                `;
+            }) : data.videos.forEach(vid => {
                 vidContainer.innerHTML += `
                     <div class="p-5 bg-gray-900/60 border border-gray-800 rounded-2xl flex items-center justify-between">
                         <div>
