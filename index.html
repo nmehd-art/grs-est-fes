@@ -41,6 +41,7 @@
     <nav class="border-b border-gray-800 bg-darkBg/90 backdrop-blur-md sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16 items-center">
+                <!-- Logo -->
                 <div class="flex items-center space-x-3 space-x-reverse cursor-pointer" onclick="showPage('home')">
                     <div class="bg-gradient-to-tr from-accentGreen to-accentBlue p-2 rounded-xl text-black font-black text-xl shadow-lg shadow-accentGreen/20">
                         <i class="fa-solid fa-shield-halved"></i>
@@ -50,6 +51,8 @@
                         <span class="block text-xs text-gray-400 font-medium">EST Fès • Réseaux & Sécurité</span>
                     </div>
                 </div>
+
+                <!-- Desktop Menu (فقط للبيسي) -->
                 <div class="hidden md:flex items-center space-x-6 space-x-reverse text-sm font-medium">
                     <button onclick="showPage('home')" data-i18n="navHome" class="hover:text-accentGreen transition">الرئيسية</button>
                     <button onclick="showPage('emploi')" data-i18n="navEmploi" class="hover:text-accentGreen transition">جدول الحصص والمجموعات</button>
@@ -57,12 +60,30 @@
                     <button onclick="showPage('contact')" data-i18n="navContact" class="hover:text-accentGreen transition">اتصل بي / استفسار</button>
                     <button onclick="showPage('about')" data-i18n="navAbout" class="hover:text-accentGreen transition">عن المنصة</button>
                 </div>
-                <!-- Language Switcher -->
-                <div class="flex items-center space-x-2 space-x-reverse bg-gray-900 border border-gray-800 p-1 rounded-xl">
-                    <button onclick="setLanguage('ar')" id="lang-ar" class="px-2.5 py-1 text-xs font-bold rounded-lg bg-accentGreen text-black transition">AR</button>
-                    <button onclick="setLanguage('fr')" id="lang-fr" class="px-2.5 py-1 text-xs font-bold rounded-lg text-gray-400 hover:text-white transition">FR</button>
+
+                <!-- Right Side: Language Switcher & Mobile Menu Button -->
+                <div class="flex items-center space-x-3 space-x-reverse">
+                    <!-- Language Switcher -->
+                    <div class="flex items-center space-x-1 space-x-reverse bg-gray-900 border border-gray-800 p-1 rounded-xl">
+                        <button onclick="setLanguage('ar')" id="lang-ar" class="px-2.5 py-1 text-xs font-bold rounded-lg bg-accentGreen text-black transition">AR</button>
+                        <button onclick="setLanguage('fr')" id="lang-fr" class="px-2.5 py-1 text-xs font-bold rounded-lg text-gray-400 hover:text-white transition">FR</button>
+                    </div>
+
+                    <!-- Mobile Menu Button (يظهر فقط في الهاتف ☰) -->
+                    <button onclick="toggleMobileMenu()" class="md:hidden p-2.5 text-gray-300 hover:text-accentGreen bg-gray-900 border border-gray-800 rounded-xl transition">
+                        <i class="fa-solid fa-bars text-lg"></i>
+                    </button>
                 </div>
             </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown (القائمة التي تظهر عند الضغط في الهاتف) -->
+        <div id="mobile-menu" class="hidden md:hidden bg-cardBg border-b border-gray-800 px-4 pt-2 pb-6 space-y-3 text-sm font-medium">
+            <button onclick="showPage('home'); toggleMobileMenu();" data-i18n="navHome" class="block w-full text-right px-3 py-2 rounded-lg hover:bg-gray-800 hover:text-accentGreen transition">الرئيسية</button>
+            <button onclick="showPage('emploi'); toggleMobileMenu();" data-i18n="navEmploi" class="block w-full text-right px-3 py-2 rounded-lg hover:bg-gray-800 hover:text-accentGreen transition">جدول الحصص والمجموعات</button>
+            <button onclick="showPage('resources'); toggleMobileMenu();" data-i18n="navRes" class="block w-full text-right px-3 py-2 rounded-lg hover:bg-gray-800 hover:text-accentGreen transition">طريقة تحميل لينكس</button>
+            <button onclick="showPage('contact'); toggleMobileMenu();" data-i18n="navContact" class="block w-full text-right px-3 py-2 rounded-lg hover:bg-gray-800 hover:text-accentGreen transition">اتصل بي / استفسار</button>
+            <button onclick="showPage('about'); toggleMobileMenu();" data-i18n="navAbout" class="block w-full text-right px-3 py-2 rounded-lg hover:bg-gray-800 hover:text-accentGreen transition">عن المنصة</button>
         </div>
     </nav>
 
